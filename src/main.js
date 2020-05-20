@@ -10,7 +10,7 @@ const ElementPosition = {
   AFTER_END: `afterend`,
 };
 
-const getMainMenuTemplate = () => {
+const createMainMenuTemplate = () => {
   return (
     `
       <nav class="main-navigation">
@@ -26,7 +26,7 @@ const getMainMenuTemplate = () => {
   );
 };
 
-const getUserRankTemplate = () => {
+const createUserRankTemplate = () => {
   return (
     `
       <p class="statistic__rank">
@@ -38,7 +38,7 @@ const getUserRankTemplate = () => {
   );
 };
 
-const getStatisticsTemplate = () => {
+const createStatisticsTemplate = () => {
   return (
     `
       <section class="statistic">
@@ -85,7 +85,7 @@ const getStatisticsTemplate = () => {
   );
 };
 
-const getFilmPreviewCardTemplate = () => {
+const createFilmPreviewCardTemplate = () => {
   return (
     `
         <article class="film-card">
@@ -109,11 +109,11 @@ const getFilmPreviewCardTemplate = () => {
   );
 };
 
-const getShowMoreButtonTemplate = () => {
+const createShowMoreButtonTemplate = () => {
   return `<button class="films-list__show-more">Show more</button>`;
 };
 
-const getFilmDetailsModalTemplate = () => {
+const createFilmDetailsModalTemplate = () => {
   return (
     `
       <section class="film-details">
@@ -289,11 +289,11 @@ const getFilmDetailsModalTemplate = () => {
   );
 };
 
-const getFilmsContainerTemplate = () => {
-  return `<section class="films"></section>`
+const createFilmsContainerTemplate = () => {
+  return `<section class="films"></section>`;
 };
 
-const getFilmsListContainerTemplate = () => {
+const createFilmsListContainerTemplate = () => {
   return (
     `
       <section class="films-list">
@@ -304,7 +304,7 @@ const getFilmsListContainerTemplate = () => {
   );
 };
 
-const getFilmsListExtraContainerTemplate = (title) => {
+const createFilmsListExtraContainerTemplate = (title) => {
   return (
     `
       <section class="films-list--extra">
@@ -321,29 +321,31 @@ const render = (container, template, place) => {
 
 const renderFilmsSection = (conainer, filmsCount) => {
   const filmsListElement = conainer.querySelector(`.films-list`);
-  render(filmsListElement, getShowMoreButtonTemplate(), ElementPosition.BEFORE_END);
+  render(filmsListElement, createShowMoreButtonTemplate(), ElementPosition.BEFORE_END);
   const filmsListContainerElement = filmsListElement.querySelector(`.films-list__container`);
   for (let i = 0; i < filmsCount; i++) {
-    render(filmsListContainerElement, getFilmPreviewCardTemplate(), ElementPosition.BEFORE_END);
+    render(filmsListContainerElement, createFilmPreviewCardTemplate(), ElementPosition.BEFORE_END);
   }
 };
 
 const renderExtraFilmsSection = (conainer, title, filmsCount) => {
-  render(conainer, getFilmsListExtraContainerTemplate(title), ElementPosition.BEFORE_END);
+  render(conainer, createFilmsListExtraContainerTemplate(title), ElementPosition.BEFORE_END);
   const extraFilmsListElement = conainer.querySelector(`.films-list--extra:last-child .films-list__container`);
   for (let i = 0; i < filmsCount; i++) {
-    render(extraFilmsListElement, getFilmPreviewCardTemplate(), ElementPosition.BEFORE_END);
+    render(extraFilmsListElement, createFilmPreviewCardTemplate(), ElementPosition.BEFORE_END);
   }
 };
 
+const bodyElement = document.querySelector(`body`);
 const siteMainElement = document.querySelector(`.main`);
-render(siteMainElement, getMainMenuTemplate(), ElementPosition.BEFORE_END);
-render(siteMainElement, getStatisticsTemplate(), ElementPosition.BEFORE_END);
+render(siteMainElement, createMainMenuTemplate(), ElementPosition.BEFORE_END);
+render(siteMainElement, createStatisticsTemplate(), ElementPosition.BEFORE_END);
 const statisticElement = siteMainElement.querySelector(`.statistic`);
-render(statisticElement, getUserRankTemplate(), ElementPosition.AFTER_BEGIN);
-render(siteMainElement, getFilmsContainerTemplate(), ElementPosition.BEFORE_END);
+render(statisticElement, createUserRankTemplate(), ElementPosition.AFTER_BEGIN);
+render(siteMainElement, createFilmsContainerTemplate(), ElementPosition.BEFORE_END);
 const filmsElement = siteMainElement.querySelector(`.films`);
-render(filmsElement, getFilmsListContainerTemplate(), ElementPosition.BEFORE_END);
+render(filmsElement, createFilmsListContainerTemplate(), ElementPosition.BEFORE_END);
 renderFilmsSection(filmsElement, FILMS_COUNT);
 renderExtraFilmsSection(filmsElement, `Top rated`, TOP_RATED_FILMS_COUNT);
 renderExtraFilmsSection(filmsElement, `Most commented`, MOST_COMMENTED_FILMS_COUNT);
+render(bodyElement, createFilmDetailsModalTemplate(), ElementPosition.BEFORE_END);
