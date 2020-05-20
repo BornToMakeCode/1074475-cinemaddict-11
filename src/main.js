@@ -345,6 +345,5 @@ render(siteMainElement, getFilmsContainerTemplate(), ElementPosition.BEFORE_END)
 const filmsElement = siteMainElement.querySelector(`.films`);
 render(filmsElement, getFilmsListContainerTemplate(), ElementPosition.BEFORE_END);
 renderFilmsSection(filmsElement, FILMS_COUNT);
-renderExtraFilmsSection(filmsElement, 'Most commented', MOST_COMMENTED_FILMS_COUNT);
 renderExtraFilmsSection(filmsElement, 'Top rated', TOP_RATED_FILMS_COUNT);
-
+renderExtraFilmsSection(filmsElement, 'Most commented', MOST_COMMENTED_FILMS_COUNT);
