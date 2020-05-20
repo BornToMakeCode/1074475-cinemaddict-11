@@ -10,7 +10,7 @@ const ElementPosition = {
   AFTER_END: 'afterend',
 }
 
-const getMainMenu = () => {
+const getMainMenuTemplate = () => {
   return (
     `
       <nav class="main-navigation">
@@ -337,7 +337,7 @@ const renderExtraFilmsSection = (conainer, title, filmsCount) => {
 };
 
 const siteMainElement = document.querySelector('.main');
-render(siteMainElement, getMainMenu(), ElementPosition.BEFORE_END);
+render(siteMainElement, getMainMenuTemplate(), ElementPosition.BEFORE_END);
 render(siteMainElement, getStatisticsTemplate(), ElementPosition.BEFORE_END);
 const statisticElement = siteMainElement.querySelector(`.statistic`);
 render(statisticElement, getUserRankTemplate(), ElementPosition.AFTER_BEGIN);
