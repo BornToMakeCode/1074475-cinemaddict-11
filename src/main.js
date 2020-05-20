@@ -4,11 +4,11 @@ const FILMS_COUNT = 5;
 const TOP_RATED_FILMS_COUNT = 2;
 const MOST_COMMENTED_FILMS_COUNT = 2;
 const ElementPosition = {
-  BEFORE_BEGIN: 'beforebegin',
-  AFTER_BEGIN: 'afterbegin',
-  BEFORE_END: 'beforeend',
-  AFTER_END: 'afterend',
-}
+  BEFORE_BEGIN: `beforebegin`,
+  AFTER_BEGIN: `afterbegin`,
+  BEFORE_END: `beforeend`,
+  AFTER_END: `afterend`,
+};
 
 const getMainMenuTemplate = () => {
   return (
@@ -111,7 +111,7 @@ const getFilmPreviewCardTemplate = () => {
 
 const getShowMoreButtonTemplate = () => {
   return `<button class="films-list__show-more">Show more</button>`;
-}
+};
 
 const getFilmDetailsModalTemplate = () => {
   return (
@@ -336,7 +336,7 @@ const renderExtraFilmsSection = (conainer, title, filmsCount) => {
   }
 };
 
-const siteMainElement = document.querySelector('.main');
+const siteMainElement = document.querySelector(`.main`);
 render(siteMainElement, getMainMenuTemplate(), ElementPosition.BEFORE_END);
 render(siteMainElement, getStatisticsTemplate(), ElementPosition.BEFORE_END);
 const statisticElement = siteMainElement.querySelector(`.statistic`);
@@ -345,5 +345,5 @@ render(siteMainElement, getFilmsContainerTemplate(), ElementPosition.BEFORE_END)
 const filmsElement = siteMainElement.querySelector(`.films`);
 render(filmsElement, getFilmsListContainerTemplate(), ElementPosition.BEFORE_END);
 renderFilmsSection(filmsElement, FILMS_COUNT);
-renderExtraFilmsSection(filmsElement, 'Top rated', TOP_RATED_FILMS_COUNT);
-renderExtraFilmsSection(filmsElement, 'Most commented', MOST_COMMENTED_FILMS_COUNT);
+renderExtraFilmsSection(filmsElement, `Top rated`, TOP_RATED_FILMS_COUNT);
+renderExtraFilmsSection(filmsElement, `Most commented`, MOST_COMMENTED_FILMS_COUNT);
