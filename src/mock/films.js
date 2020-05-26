@@ -1,4 +1,5 @@
 import {getRandomDate, getRandomIntegerNumber} from "../mock/utils.js";
+import {getComments} from "../mock/comments.js";
 
 const genres = [
   `Musical`,
@@ -12,6 +13,23 @@ const genres = [
 ];
 
 const titles = [
+  `The Shawshank Redemption`,
+  `The Godfather`,
+  `The Dark Knight`,
+  `The Godfather: Part II`,
+  `The Lord of the Rings: The Return of the King`,
+  `Pulp Fiction`,
+  `Schindler's List`,
+  `12 Angry Men`,
+  `Inception`,
+  `Fight Club`,
+  `Forrest Gump`,
+  `The Matrix`,
+  `Goodfellas`,
+  `Anand`
+];
+
+const originalTitles = [
   `The Shawshank Redemption`,
   `The Godfather`,
   `The Dark Knight`,
@@ -86,43 +104,45 @@ Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.
 Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.
 Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.
 Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus.
-In rutrum ac purus sit amet tempus.`.split(`.`);
+In rutrum ac purus sit amet tempus.`;
 
 const sliceRandomElements = (arr) => {
-  return arr.slice(Math.floor(Math.random() * (arr.length - 1)), Math.floor(Math.random() * arr.length));
+  return arr.slice(getRandomIntegerNumber(0, arr.length - 1), getRandomIntegerNumber(1, arr.length));
 };
 
 const getRandomBoolValue = () => {
   return Boolean(Math.round(Math.random()));
 };
 
+const getRandomSentences = (text) => {
+  return sliceRandomElements(text.split(`.`)).join(``);
+};
+
 const films = titles.map((element, index) => {
   return {
     id: index + 1,
     title: element,
-    alternativeTitle: `Alternative Title #${index + 1}`,
+    originalTitle: originalTitles[getRandomIntegerNumber(0, originalTitles.length)],
     totalRating: Math.round(Math.random() * (10 - 1) + 1 * 10) / 10,
-    poster: posters[Math.floor(Math.random() * posters.length)],
-    ageRating: ageRatings[Math.floor(Math.random() * ageRatings.length)],
-    director: directors[Math.floor(Math.random() * directors.length)],
+    poster: posters[getRandomIntegerNumber(0, posters.length)],
+    ageRating: ageRatings[getRandomIntegerNumber(0, ageRatings.length)],
+    director: directors[getRandomIntegerNumber(0, directors.length)],
     writers: sliceRandomElements(writers).join(`, `),
     actors: sliceRandomElements(actors).join(`, `),
     release: {
       date: getRandomDate(),
-      country: countries[Math.floor(Math.random() * countries.length)]
+      country: countries[getRandomIntegerNumber(0, countries.length)]
     },
     runtime: getRandomIntegerNumber(70, 180),
     genres: sliceRandomElements(genres),
-    description: sliceRandomElements(descriptions).join(``),
+    description: getRandomSentences(descriptions),
     userDetails: {
       isInWatchlist: getRandomBoolValue(),
       isAlreadyWatched: getRandomBoolValue(),
       watchingDate: getRandomDate(),
       isFavorite: getRandomBoolValue()
     },
-    comments: [
-      1, 2, 3
-    ]
+    comments: getComments([1, 2, 3])
   };
 });
 

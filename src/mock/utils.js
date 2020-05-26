@@ -18,26 +18,8 @@ const convertMinutesToHours = (minutes) => {
   return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 };
 
-const getUserRankName = (number) => {
-  let rankName;
-
-  switch (true) {
-    case (number === 0):
-      rankName = ``;
-      break;
-    case number <= 10:
-      rankName = `novice`;
-      break;
-    case number <= 20:
-      rankName = `fan`;
-      break;
-    case (number > 20):
-      rankName = `movie buff`;
-      break;
-  }
-
-  return rankName;
+const capitalizeFirstLetter = (str) =>{
+  return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 };
 
-
-export {getRandomIntegerNumber, getRandomDate, getFormatedDate, convertMinutesToHours, getUserRankName};
+export {getRandomIntegerNumber, getRandomDate, getFormatedDate, convertMinutesToHours, capitalizeFirstLetter};

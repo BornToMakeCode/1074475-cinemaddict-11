@@ -13,7 +13,6 @@ import {getRandomIntegerNumber} from "./mock/utils.js";
 import {getMenu} from "./mock/main-menu.js";
 import {getStatisticsFilter} from "./mock/statistics.js";
 import {getFilm, getFilms} from "./mock/films.js";
-import {getComments} from "./mock/comments.js";
 
 
 const FILMS_COUNT = 5;
@@ -25,7 +24,7 @@ const ElementPosition = {
   BEFORE_END: `beforeend`,
   AFTER_END: `afterend`,
 };
-const allFilmsCount = 130291;
+const ALL_FILMS_COUNT = 130291;
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -38,9 +37,9 @@ const renderFilmsSection = (films) => {
   }
 };
 
-// const renderExtraFilmsSection = (conainer, title, filmsCount) => {
-//   render(conainer, createFilmsListExtraContainerTemplate(title), ElementPosition.BEFORE_END);
-//   const extraFilmsListElement = conainer.querySelector(`.films-list--extra:last-child .films-list__container`);
+// const renderExtraFilmsSection = (container, title, filmsCount) => {
+//   render(container, createFilmsListExtraContainerTemplate(title), ElementPosition.BEFORE_END);
+//   const extraFilmsListElement = container.querySelector(`.films-list--extra:last-child .films-list__container`);
 //   for (let i = 0; i < filmsCount; i++) {
 //     render(extraFilmsListElement, createFilmPreviewCardTemplate(), ElementPosition.BEFORE_END);
 //   }
@@ -51,7 +50,6 @@ const userRank = getRandomIntegerNumber(0, 50);
 const menuItems = getMenu();
 const statisticsFilter = getStatisticsFilter();
 const film = getFilm(1);
-const comments = getComments(film.comments);
 
 const bodyElement = document.querySelector(`body`);
 const siteMainElement = document.querySelector(`.main`);
@@ -68,9 +66,9 @@ const filmCollection = getFilms(currentPageNumber, FILMS_COUNT);
 renderFilmsSection(filmCollection.items);
 // renderExtraFilmsSection(filmsElement, `Top rated`, TOP_RATED_FILMS_COUNT);
 // renderExtraFilmsSection(filmsElement, `Most commented`, MOST_COMMENTED_FILMS_COUNT);
-render(bodyElement, createFilmDetailsModalTemplate(film, comments), ElementPosition.BEFORE_END);
+render(bodyElement, createFilmDetailsModalTemplate(film), ElementPosition.BEFORE_END);
 const footer = bodyElement.querySelector(`.footer`);
-render(footer, createFooterStatisticsTemplate(allFilmsCount), ElementPosition.BEFORE_END);
+render(footer, createFooterStatisticsTemplate(ALL_FILMS_COUNT), ElementPosition.BEFORE_END);
 
 
 const showMoreButton = filmsListElement.querySelector(`.films-list__show-more`);

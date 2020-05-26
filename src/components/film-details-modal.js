@@ -29,9 +29,9 @@ const createComments = (comments) => {
   });
 };
 
-export const createFilmDetailsModalTemplate = (film, comments) => {
+export const createFilmDetailsModalTemplate = (film) => {
   const genresMarkup = createGenres(film.genres).join(`\n`);
-  const filmCommentsMarkup = createComments(comments).join(`\n`);
+  const filmCommentsMarkup = createComments(film.comments).join(`\n`);
   const formatedReleaseDate = getFormatedDate(film.release.date);
   const filmRuntime = convertMinutesToHours(film.runtime);
   return (
@@ -53,7 +53,7 @@ export const createFilmDetailsModalTemplate = (film, comments) => {
                 <div class="film-details__info-head">
                   <div class="film-details__title-wrap">
                     <h3 class="film-details__title">${film.title}</h3>
-                    <p class="film-details__title-original">Original: ${film.alternativeTitle}</p>
+                    <p class="film-details__title-original">Original: ${film.originalTitle}</p>
                   </div>
 
                   <div class="film-details__rating">
@@ -112,7 +112,7 @@ export const createFilmDetailsModalTemplate = (film, comments) => {
 
           <div class="form-details__bottom-container">
             <section class="film-details__comments-wrap">
-              <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${comments.length}</span></h3>
+              <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${film.comments.length}</span></h3>
 
               <ul class="film-details__comments-list">
                 ${filmCommentsMarkup}

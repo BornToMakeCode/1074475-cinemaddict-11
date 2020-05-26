@@ -1,5 +1,5 @@
 
-import {getRandomDate} from "../mock/utils.js";
+import {getRandomDate, getRandomIntegerNumber} from "../mock/utils.js";
 
 const commentTexts = [
   `Goood`,
@@ -24,9 +24,9 @@ const getComments = (ids) => {
   for (let i = 0; i < ids.length; i++) {
     comments.push({
       id: ids[i],
-      emoji: emojis[Math.floor(Math.random() * emojis.length)],
-      text: commentTexts[Math.floor(Math.random() * commentTexts.length)],
-      author: authors[Math.floor(Math.random() * authors.length)],
+      emoji: emojis[getRandomIntegerNumber(0, emojis.length)],
+      text: commentTexts[getRandomIntegerNumber(0, commentTexts.length)],
+      author: authors[getRandomIntegerNumber(0, authors.length)],
       createdDate: getRandomDate(),
     });
 

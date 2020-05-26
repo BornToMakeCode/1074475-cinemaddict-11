@@ -1,7 +1,7 @@
 const createMenuItem = (item, isActive, isFiltered) => {
   return (
     `
-    <a href="#all" class="main-navigation__item ${isActive ? `main-navigation__item--active` : ``}">
+    <a href="${item.link}" class="main-navigation__item ${isActive ? `main-navigation__item--active` : ``}">
       ${item.name}
       ${
     isFiltered ?

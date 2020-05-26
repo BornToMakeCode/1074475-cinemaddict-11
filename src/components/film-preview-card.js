@@ -1,9 +1,9 @@
 import {convertMinutesToHours} from "../mock/utils.js";
 
 export const createFilmPreviewCardTemplate = (film) => {
-  const maxDescriptionSize = 140;
+  const MAX_DESCRIPTIONSIZE = 140;
   const filmGenre = film.genres[0];
-  const filmDescription = film.description.length > maxDescriptionSize ? `${film.description.substr(0, maxDescriptionSize - 1)}...` : film.description;
+  const filmDescription = film.description.length > MAX_DESCRIPTIONSIZE ? `${film.description.substr(0, MAX_DESCRIPTIONSIZE - 1)}...` : film.description;
   const filmRuntime = convertMinutesToHours(film.runtime);
   return (
     `
