@@ -1,10 +1,32 @@
-export const createUserRankTemplate = () => {
+const getUserRankName = (number) => {
+  let rankName;
+
+  switch (true) {
+    case (number === 0):
+      rankName = ``;
+      break;
+    case number <= 10:
+      rankName = `novice`;
+      break;
+    case number <= 20:
+      rankName = `fan`;
+      break;
+    case (number > 20):
+      rankName = `movie buff`;
+      break;
+  }
+
+  return rankName;
+};
+
+export const createUserRankTemplate = (rank) => {
+  const rankName = getUserRankName(rank);
   return (
     `
       <p class="statistic__rank">
         Your rank
         <img class="statistic__img" src="images/bitmap@2x.png" alt="Avatar" width="35" height="35">
-        <span class="statistic__rank-label">Sci-Fighter</span>
+        <span class="statistic__rank-label">${rankName}</span>
       </p>
     `
   );
