@@ -1,18 +1,17 @@
+import {createElement} from "../mock/utils.js";
+
 const createStatsFilter = (name, isChecked) => {
   return (
-    `
-    <input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="statistic-${name}" value="${name}" ${isChecked ? `checked` : ``}>
-    <label for="statistic-${name}" class="statistic__filters-label">${name}</label>
-    `
+    `<input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="statistic-${name}" value="${name}" ${isChecked ? `checked` : ``}>
+    <label for="statistic-${name}" class="statistic__filters-label">${name}</label>`
   );
 };
 
-export const createStatisticsTemplate = (statisticsFilter) => {
+const createStatisticsTemplate = (statisticsFilter) => {
   const filterMarkup = statisticsFilter.map((element, index) => createStatsFilter(element.name, index === 0)).join(`\n`);
 
   return (
-    `
-      <section class="statistic">
+    `<section class="statistic">
         <form action="https://echo.htmlacademy.ru/" method="get" class="statistic__filters">
           <p class="statistic__filters-description">Show stats:</p>
           ${filterMarkup}
@@ -37,7 +36,29 @@ export const createStatisticsTemplate = (statisticsFilter) => {
           <canvas class="statistic__chart" width="1000"></canvas>
         </div>
 
-      </section>
-    `
+      </section>`
   );
 };
+
+export default class Statistics {
+  constructor(statisticsFilter) {
+    this._statisticsFilter = statisticsFilter;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createStatisticsTemplate(this._statisticsFilter);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

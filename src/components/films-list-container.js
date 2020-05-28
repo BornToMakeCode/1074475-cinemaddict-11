@@ -1,10 +1,29 @@
-export const createFilmsListContainerTemplate = () => {
+import {createElement} from "../mock/utils.js";
+
+const createFilmsListContainerTemplate = () => {
   return (
-    `
-      <section class="films-list">
-        <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
-        <div class="films-list__container"></div>
-      </section>
-    `
+    `<div class="films-list__container"></div>`
   );
 };
+
+export default class FilmsListContainer {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmsListContainerTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

@@ -165,8 +165,4 @@ const getFilms = (currentPage, pageSize) => {
   };
 };
 
-const getFilm = (id) => {
-  return films.find((element)=>element.id === id);
-};
-
-export {getFilm, getFilms};
+export {getFilms};

@@ -1,3 +1,8 @@
+const ElementPosition = {
+  AFTER_BEGIN: `afterbegin`,
+  BEFORE_END: `beforeend`
+};
+
 const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor(Math.random() * (max - min));
 };
@@ -22,4 +27,22 @@ const capitalizeFirstLetter = (str) =>{
   return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 };
 
-export {getRandomIntegerNumber, getRandomDate, getFormatedDate, convertMinutesToHours, capitalizeFirstLetter};
+const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+
+  return newElement.firstChild;
+};
+
+const render = (container, template, place) => {
+  switch (place) {
+    case ElementPosition.AFTER_BEGIN:
+      container.prepend(template);
+      break;
+    case ElementPosition.BEFORE_END:
+      container.append(template);
+      break;
+  }
+};
+
+export {ElementPosition, render, getRandomIntegerNumber, getRandomDate, getFormatedDate, convertMinutesToHours, capitalizeFirstLetter, createElement};
