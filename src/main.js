@@ -16,11 +16,10 @@ import {getStatisticsFilter} from "./mock/statistics.js";
 import {getFilms} from "./mock/films.js";
 
 
+const ALL_FILMS_COUNT = 130291;
 const FILMS_COUNT = 5;
 // const TOP_RATED_FILMS_COUNT = 2;
 // const MOST_COMMENTED_FILMS_COUNT = 2;
-
-const ALL_FILMS_COUNT = 130291;
 
 let currentPageNumber = 1;
 let loadedFilmsCount = FILMS_COUNT;
@@ -130,8 +129,6 @@ const statisticElement = siteMainElement.querySelector(`.statistic`);
 render(statisticElement, userRank.getElement(), ElementPosition.AFTER_BEGIN);
 const filmCollection = getFilms(currentPageNumber, FILMS_COUNT);
 renderFilmsSection(siteMainElement, filmCollection.items);
-
-
 // renderExtraFilmsSection(filmsElement, `Top rated`, TOP_RATED_FILMS_COUNT);
 // renderExtraFilmsSection(filmsElement, `Most commented`, MOST_COMMENTED_FILMS_COUNT);
 const footer = bodyElement.querySelector(`.footer`);
