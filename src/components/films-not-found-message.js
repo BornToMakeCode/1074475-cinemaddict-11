@@ -1,16 +1,16 @@
 import {createElement} from "../mock/utils.js";
 
-const createShowMoreButtonTemplate = () => {
-  return `<button class="films-list__show-more">Show more</button>`;
+const createFilmsNotFoundMessageTemplate = () => {
+  return `<h2 class="films-list__title">There are no movies in our database</h2>`;
 };
 
-export default class ShowMoreButton {
+export default class FilmsNotFoundMessage {
   constructor() {
     this._element = null;
   }
 
   getTemplate() {
-    return createShowMoreButtonTemplate();
+    return createFilmsNotFoundMessageTemplate();
   }
 
   getElement() {

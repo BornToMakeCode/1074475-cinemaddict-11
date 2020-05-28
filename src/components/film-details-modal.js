@@ -1,4 +1,4 @@
-import {getFormatedDate, convertMinutesToHours} from "../mock/utils.js";
+import {getFormatedDate, convertMinutesToHours, createElement} from "../mock/utils.js";
 
 const createGenres = (genres) => {
   return genres.map((genre) => {
@@ -10,8 +10,7 @@ const createComments = (comments) => {
   return comments.map((comment) => {
     const formatedCreatedDate = getFormatedDate(comment.createdDate);
     return (
-      `
-      <li class="film-details__comment">
+      `<li class="film-details__comment">
         <span class="film-details__comment-emoji">
           <img src="./images/emoji/${comment.emoji}.png" width="55" height="55" alt="emoji-${comment.emoji}">
         </span>
@@ -23,20 +22,18 @@ const createComments = (comments) => {
             <button class="film-details__comment-delete">Delete</button>
           </p>
         </div>
-      </li>
-      `
+      </li>`
     );
   });
 };
 
-export const createFilmDetailsModalTemplate = (film) => {
+const createFilmDetailsModalTemplate = (film) => {
   const genresMarkup = createGenres(film.genres).join(`\n`);
   const filmCommentsMarkup = createComments(film.comments).join(`\n`);
   const formatedReleaseDate = getFormatedDate(film.release.date);
   const filmRuntime = convertMinutesToHours(film.runtime);
   return (
-    `
-      <section class="film-details">
+    `<section class="film-details">
         <form class="film-details__inner" action="" method="get">
           <div class="form-details__top-container">
             <div class="film-details__close">
@@ -150,7 +147,29 @@ export const createFilmDetailsModalTemplate = (film) => {
             </section>
           </div>
         </form>
-      </section>
-      `
+      </section>`
   );
 };
+
+export default class FilmDetailsModal {
+  constructor(film) {
+    this._film = film;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmDetailsModalTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
