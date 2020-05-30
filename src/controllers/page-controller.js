@@ -1,4 +1,4 @@
-import Sort, {SortType} from "../components/sort.js";
+import Sort from "../components/sort.js";
 import FilmPreviewCard from "../components/film-preview-card.js";
 import ShowMoreButton from "../components/show-more-button.js";
 import FilmDetailsModal from "../components/film-details-modal.js";
@@ -8,9 +8,10 @@ import FilmsListContainer from "../components/films-list-container.js";
 import FilmsNotFoundMessage from "../components/films-not-found-message.js";
 import {ElementPosition, render, remove} from "../utils/render.js";
 import {getFilms} from "../mock/films.js";
+import {SortType} from "../utils/common.js";
 
 const FILMS_COUNT = 5;
-let loadedFilmsCount = 0;// FILMS_COUNT;
+let loadedFilmsCount = 0;
 let currentPageNumber = 1;
 let currentSortBy = SortType.DEFAULT;
 
@@ -75,7 +76,6 @@ export default class PageController {
     this._filmsContainer = new FilmsContainer();
     this._filmsListContainer = new FilmsListContainer();
     this._filmsList = new FilmsList();
-    // this._loadedFilmsCount = FILMS_COUNT;
   }
 
   render(films) {

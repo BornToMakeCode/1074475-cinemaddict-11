@@ -1,4 +1,4 @@
-import {getRandomDate, getRandomIntegerNumber} from "../utils/common.js";
+import {getRandomDate, getRandomIntegerNumber, SortType} from "../utils/common.js";
 import {getComments} from "../mock/comments.js";
 
 const genres = [
@@ -94,12 +94,6 @@ const countries = [
   `Russia`,
   `France`
 ];
-
-const SortType = {
-  DEFAULT: `default`,
-  DATE: `date`,
-  RATING: `rating`
-};
 
 const descriptions = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.

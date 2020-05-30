@@ -1,10 +1,5 @@
 import AbstractComponent from "./abstract-component.js";
-
-export const SortType = {
-  DEFAULT: `default`,
-  DATE: `date`,
-  RATING: `rating`
-};
+import {SortType} from "../utils/common.js";
 
 const createSortTemplate = () => {
   return (
@@ -40,13 +35,13 @@ export default class Sort extends AbstractComponent {
         return;
       }
 
-      const sortType = evt.target.dataset.sortType;
+      const newSortType = evt.target.dataset.sortType;
 
-      if (this._currenSortType === sortType) {
+      if (this._currenSortType === newSortType) {
         return;
       }
 
-      this._currenSortType = sortType;
+      this._currenSortType = newSortType;
 
       handler(this._currenSortType);
     });
