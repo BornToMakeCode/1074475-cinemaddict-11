@@ -1,4 +1,4 @@
-import {getRandomIntegerNumber, capitalizeFirstLetter} from "../mock/utils.js";
+import {getRandomIntegerNumber, capitalizeFirstLetter} from "../utils/common.js";
 
 const menuNames = [
   {name: `all movies`, link: `#all`},

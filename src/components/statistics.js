@@ -1,4 +1,4 @@
-import {createElement} from "../mock/utils.js";
+import AbstractComponent from "./abstract-component.js";
 
 const createStatsFilter = (name, isChecked) => {
   return (
@@ -40,25 +40,13 @@ const createStatisticsTemplate = (statisticsFilter) => {
   );
 };
 
-export default class Statistics {
+export default class Statistics extends AbstractComponent {
   constructor(statisticsFilter) {
+    super();
     this._statisticsFilter = statisticsFilter;
-    this._element = null;
   }
 
   getTemplate() {
     return createStatisticsTemplate(this._statisticsFilter);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

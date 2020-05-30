@@ -1,4 +1,4 @@
-import {getRandomDate, getRandomIntegerNumber} from "../mock/utils.js";
+import {getRandomDate, getRandomIntegerNumber} from "../utils/common.js";
 import {getComments} from "../mock/comments.js";
 
 const genres = [
@@ -95,6 +95,12 @@ const countries = [
   `France`
 ];
 
+const SortType = {
+  DEFAULT: `default`,
+  DATE: `date`,
+  RATING: `rating`
+};
+
 const descriptions = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Cras aliquet varius magna, non porta ligula feugiat eget.
@@ -116,6 +122,21 @@ const getRandomBoolValue = () => {
 
 const getRandomSentences = (text) => {
   return sliceRandomElements(text.split(`.`)).join(``);
+};
+
+const sortByType = (sortBy) => {
+  const sortedFilms = films.slice();
+
+  switch (sortBy) {
+    case SortType.DATE:
+      return sortedFilms.sort((a, b) => a.release.date - b.release.date);
+    case SortType.RATING:
+      return sortedFilms.sort((a, b) => a.totalRating - b.totalRating);
+    case SortType.DEFAULT:
+      return sortedFilms;
+    default:
+      return sortedFilms;
+  }
 };
 
 const films = titles.map((element, index) => {
@@ -146,7 +167,7 @@ const films = titles.map((element, index) => {
   };
 });
 
-const getFilms = (currentPage, pageSize) => {
+const getFilms = (currentPage, pageSize, sortBy) => {
   const totalItems = films.length;
   const totalPages = Math.ceil(totalItems / pageSize);
 
@@ -156,12 +177,13 @@ const getFilms = (currentPage, pageSize) => {
     currentPage = totalPages;
   }
 
+  const sortedFilms = sortByType(sortBy);
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = Math.min(startIndex + pageSize, totalItems);
 
   return {
     totalItemsCount: films.length,
-    items: Array.from(films).slice(startIndex, endIndex)
+    items: sortedFilms.slice(startIndex, endIndex)
   };
 };
 

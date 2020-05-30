@@ -1,4 +1,4 @@
-import {createElement} from "../mock/utils.js";
+import AbstractComponent from "./abstract-component.js";
 
 const getUserRankName = (number) => {
   let rankName;
@@ -32,26 +32,14 @@ const createUserRankTemplate = (rank) => {
   );
 };
 
-export default class UserRank {
+export default class UserRank extends AbstractComponent {
   constructor(rank) {
+    super();
     this._rank = rank;
-    this._element = null;
   }
 
   getTemplate() {
     return createUserRankTemplate(this._rank);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
 

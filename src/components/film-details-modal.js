@@ -1,4 +1,5 @@
-import {getFormatedDate, convertMinutesToHours, createElement} from "../mock/utils.js";
+import {getFormatedDate, convertMinutesToHours} from "../utils/common.js";
+import AbstractComponent from "./abstract-component.js";
 
 const createGenres = (genres) => {
   return genres.map((genre) => {
@@ -151,25 +152,17 @@ const createFilmDetailsModalTemplate = (film) => {
   );
 };
 
-export default class FilmDetailsModal {
+export default class FilmDetailsModal extends AbstractComponent {
   constructor(film) {
+    super();
     this._film = film;
-    this._element = null;
   }
 
   getTemplate() {
     return createFilmDetailsModalTemplate(this._film);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
+  setCloseModalButtonClickHandler(handler) {
+    this.getElement().querySelector(`.film-details__close-btn`).addEventListener(`click`, handler);
   }
 }

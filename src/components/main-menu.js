@@ -1,4 +1,4 @@
-import {createElement} from "../mock/utils.js";
+import AbstractComponent from "./abstract-component.js";
 
 const createMenuItem = (item, isActive, isFiltered) => {
   return (
@@ -28,25 +28,13 @@ const createMainMenuTemplate = (menuItems) => {
   );
 };
 
-export default class MainMenu {
+export default class MainMenu extends AbstractComponent {
   constructor(items) {
+    super();
     this._items = items;
-    this._element = null;
   }
 
   getTemplate() {
     return createMainMenuTemplate(this._items);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
