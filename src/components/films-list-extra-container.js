@@ -1,4 +1,4 @@
-import {createElement} from "../mock/utils.js";
+import AbstractComponent from "./abstract-component.js";
 
 const createFilmsListExtraContainerTemplate = (title) => {
   return (
@@ -9,25 +9,13 @@ const createFilmsListExtraContainerTemplate = (title) => {
   );
 };
 
-export default class FilmsListExtraContainer {
+export default class FilmsListExtraContainer extends AbstractComponent {
   constructor(title) {
+    super();
     this._title = title;
-    this._element = null;
   }
 
   getTemplate() {
     return createFilmsListExtraContainerTemplate(this._title);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

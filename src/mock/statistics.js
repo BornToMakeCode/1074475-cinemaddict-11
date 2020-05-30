@@ -1,4 +1,4 @@
-import {getRandomIntegerNumber} from "../mock/utils.js";
+import {getRandomIntegerNumber} from "../utils/common.js";
 
 const filterNames = [`all time`, `today`, `week`, `month`, `year`];
 const genres = [`Comedy`, `Sci-Fi`];

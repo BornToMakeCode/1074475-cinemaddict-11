@@ -1,5 +1,5 @@
 
-import {getRandomDate, getRandomIntegerNumber} from "../mock/utils.js";
+import {getRandomDate, getRandomIntegerNumber} from "../utils/common.js";
 
 const commentTexts = [
   `Goood`,

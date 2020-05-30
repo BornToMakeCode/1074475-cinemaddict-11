@@ -1,4 +1,4 @@
-import {createElement} from "../mock/utils.js";
+import AbstractComponent from "./abstract-component.js";
 
 const createFooterStatisticsTemplate = (filmsCount) => {
   return (
@@ -8,25 +8,13 @@ const createFooterStatisticsTemplate = (filmsCount) => {
   );
 };
 
-export default class FooterStatistics {
+export default class FooterStatistics extends AbstractComponent {
   constructor(filmsCount) {
+    super();
     this._filmsCount = filmsCount;
-    this._element = null;
   }
 
   getTemplate() {
     return createFooterStatisticsTemplate(this._filmsCount);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
