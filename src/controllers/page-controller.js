@@ -1,7 +1,5 @@
 import Sort from "../components/sort.js";
-import FilmPreviewCard from "../components/film-preview-card.js";
 import ShowMoreButton from "../components/show-more-button.js";
-import FilmDetailsModal from "../components/film-details-modal.js";
 import FilmsContainer from "../components/films-container.js";
 import FilmsList from "../components/films-list.js";
 import FilmsListContainer from "../components/films-list-container.js";
@@ -72,7 +70,7 @@ export default class PageController {
 
       return movieController;
     });
-  };
+  }
 
   render(films) {
     this._films = films;
