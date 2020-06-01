@@ -19,7 +19,7 @@ export const getRandomDate = () => {
 
 export const convertMinutesToHours = (durationInMinutes) => {
   const hours = moment.duration(durationInMinutes, `minutes`).hours();
-  const minutes = moment.duration(durationInMinutes, 'minutes').minutes();
+  const minutes = moment.duration(durationInMinutes, `minutes`).minutes();
   return `${hours}h ${minutes}m`;
 };
 
