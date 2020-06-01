@@ -15,11 +15,6 @@ export const getRandomDate = () => {
   return new Date(randomYear, randomMonth, randomDay);
 };
 
-export const getFormatedDate = (date, locales = `en-GB`, options = {year: `numeric`, month: `long`, day: `numeric`}) => {
-  const dateTimeFormat = new Intl.DateTimeFormat(locales, options);
-  return dateTimeFormat.format(date);
-};
-
 export const convertMinutesToHours = (minutes) => {
   return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 };
