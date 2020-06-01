@@ -1,17 +1,19 @@
 import {convertMinutesToHours} from "../utils/common.js";
 import AbstractComponent from "./abstract-component.js";
+import moment from "moment";
 
 const createFilmPreviewCardTemplate = (film) => {
   const MAX_DESCRIPTIONSIZE = 140;
   const filmGenre = film.genres[0];
   const filmDescription = film.description.length > MAX_DESCRIPTIONSIZE ? `${film.description.substr(0, MAX_DESCRIPTIONSIZE - 1)}...` : film.description;
   const filmRuntime = convertMinutesToHours(film.runtime);
+  const releaseDate = moment(film.release.date).format(`YYYY`);
   return (
     `<article class="film-card">
         <h3 class="film-card__title">${film.title}</h3>
         <p class="film-card__rating">${film.totalRating}</p>
         <p class="film-card__info">
-          <span class="film-card__year">${film.release.date.getFullYear()}</span>
+          <span class="film-card__year">${releaseDate}</span>
           <span class="film-card__duration">${filmRuntime}</span>
           <span class="film-card__genre">${filmGenre}</span>
         </p>

@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const SortType = {
   DEFAULT: `default`,
   DATE: `date`,
@@ -15,16 +17,12 @@ export const getRandomDate = () => {
   return new Date(randomYear, randomMonth, randomDay);
 };
 
-export const getFormatedDate = (date, locales = `en-GB`, options = {year: `numeric`, month: `long`, day: `numeric`}) => {
-  const dateTimeFormat = new Intl.DateTimeFormat(locales, options);
-  return dateTimeFormat.format(date);
-};
-
-export const convertMinutesToHours = (minutes) => {
-  return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+export const convertMinutesToHours = (durationInMinutes) => {
+  const hours = moment.duration(durationInMinutes, `minutes`).hours();
+  const minutes = moment.duration(durationInMinutes, `minutes`).minutes();
+  return `${hours}h ${minutes}m`;
 };
 
 export const capitalizeFirstLetter = (str) =>{
   return `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 };
-

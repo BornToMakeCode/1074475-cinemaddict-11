@@ -1,5 +1,6 @@
-import {getFormatedDate, convertMinutesToHours} from "../utils/common.js";
+import {convertMinutesToHours} from "../utils/common.js";
 import AbstractSmartComponent from "./abstract-smart-component.js";
+import moment from "moment";
 
 const createGenres = (genres) => {
   return genres.map((genre) => {
@@ -9,7 +10,7 @@ const createGenres = (genres) => {
 
 const createComments = (comments) => {
   return comments.map((comment) => {
-    const formatedCreatedDate = getFormatedDate(comment.createdDate);
+    const formatedCreatedDate = moment(comment.createdDate).fromNow();
     return (
       `<li class="film-details__comment">
         <span class="film-details__comment-emoji">
@@ -29,13 +30,13 @@ const createComments = (comments) => {
 };
 
 const createEmoji = (emoji) => {
-  return emoji ? `<img src="./images/emoji/${emoji}.png" width="55" height="55" alt="emoji-${emoji}"></img>` : ``;
+  return emoji ? `<img src="./images/emoji/${emoji}.png" width="55" height="55" alt="emoji-${emoji}">` : ``;
 };
 
 const createFilmDetailsModalTemplate = (film, selectedEmoji) => {
   const genresMarkup = createGenres(film.genres).join(`\n`);
   const filmCommentsMarkup = createComments(film.comments).join(`\n`);
-  const formatedReleaseDate = getFormatedDate(film.release.date);
+  const formatedReleaseDate = moment(film.release.date).format(`D MMMM YYYY`);
   const filmRuntime = convertMinutesToHours(film.runtime);
   return (
     `<section class="film-details">
