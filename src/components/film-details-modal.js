@@ -30,7 +30,7 @@ const createComments = (comments) => {
 };
 
 const createEmoji = (emoji) => {
-  return emoji ? `<img src="./images/emoji/${emoji}.png" width="55" height="55" alt="emoji-${emoji}"></img>` : ``;
+  return emoji ? `<img src="./images/emoji/${emoji}.png" width="55" height="55" alt="emoji-${emoji}">` : ``;
 };
 
 const createFilmDetailsModalTemplate = (film, selectedEmoji) => {
